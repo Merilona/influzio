@@ -1,0 +1,247 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <!-- Your existing head content --><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Data Tables</title>
+    <!-- Bootstrap CSS -->
+    
+    <link rel="stylesheet" href="{% static 'dashboard/assets/vendor/bootstrap/css/bootstrap.min.css'  %}">
+    <link rel="stylesheet" href="{% static 'dashboard/assets/vendor/fonts/circular-std/style.css'   %}">
+    <link rel="stylesheet" href="{% static 'dashboard/assets/libs/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/assets/vendor/fonts/fontawesome/css/fontawesome-all' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'dashboard/assets/vendor/datatables/css/dataTables.bootstrap4.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'dashboard/assets/vendor/datatables/css/buttons.bootstrap4.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'dashboard/assets/vendor/datatables/css/select.bootstrap4.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'dashboard/assets/vendor/datatables/css/fixedHeader.bootstrap4.css' %}">
+
+    <!-- Add DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="{% static 'dashboard/assets/vendor/datatables/css/dataTables.bootstrap4.min.css' %}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.2.7/css/select.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.5/css/fixedHeader.dataTables.min.css">
+
+</head>
+
+<body>
+    <!-- Your existing body content -->
+    
+    <!-- Add DataTables JS -->  <!-- main wrapper -->
+    <div class="dashboard-main-wrapper">
+        <!-- navbar -->
+        <div class="dashboard-header">
+            <nav class="navbar navbar-expand-lg bg-white fixed-top">
+                <a class="navbar-brand" href="dashboard/index.html">Influzio</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto navbar-right-top">
+                        <li class="nav-item">
+                            <form id="searchForm">
+                                <label for="search">Search:</label>
+                                <input type="text" id="search" name="search" value="{{ search_query }}">
+                                <button type="submit">Search</button>
+                            </form>
+                        </li>
+                        <!-- Add other navbar items here -->
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- end navbar -->
+
+     
+<!-- left sidebar -->
+<div class="nav-left-sidebar sidebar-dark">
+    <div class="menu-list">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav flex-column">
+                    <!-- Retained 'User' section with 'Log Out' and 'Subscriptions' links -->
+                    <li class="nav-divider">
+                      Welcome  {{request.user.username}}
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false"
+                            data-target="#submenu-1" aria-controls="submenu-1">
+                            <i class="fa fa-fw fa-user-circle"></i>User
+                        </a>
+                        <div id="submenu-1" class="collapse submenu" style="">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                            
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Subscriptions</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>        <!-- end left sidebar -->
+
+        <!-- wrapper -->
+        <div class="dashboard-wrapper">
+            <div class="container-fluid dashboard-content">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <h5 class="card-header">Influencer Data</h5>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    
+                                    <table class="table" id="yourDataTableID" data-searching="true">
+                                        <thead class="bg-light">
+                                            <tr class="border-0">
+                                                
+                                                <th class="border-0">User Image</th>
+                                                <th class="border-0">User ID</th>
+                                                <th class="border-0">Followers Count</th>
+                                                <th class="border-0">Country</th>
+                                                <th class="border-0">Insta</th>
+                                                <th class="border-0">Email</th>
+
+                                            </tr>
+                                        </thead>
+                                        {% for i in data %}
+                                        <tbody>
+                                            <tr>
+                                                
+                                                <td>
+                                            
+                                                    <div class="m-r-10"><img src="{{i.USER}}" alt="user"
+                                                            class="rounded" width="45"></div>
+                                                </td>
+                                                <td>{{i.USERID}}</td>
+                                                <td>{{i.FOLLOWERS}}</td>
+                                                <td>{{i.COUNTRY}}</td>
+                                                <td><a href="https://www.instagram.com" target="_blank"><i
+                                                    class="fab fa-instagram"></i></a>{{i.EMAIL}}</td>
+                                        <td><a href="mailto:user456@email.com"><i
+                                                    class="far fa-envelope"></i></a>{{i.EMAIL}}</td>
+                                            </tr>
+                                            <!-- Add more rows as needed -->
+                                        </tbody>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- footer -->
+            <div class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                            Copyright © 2018 Influzio. All rights reserved. 
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                            <div class="text-md-right footer-links d-none d-sm-block">
+                                <a href="javascript: void(0);">About</a>
+                                <a href="javascript: void(0);">Support</a>
+                                <a href="javascript: void(0);">Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end footer -->
+        </div>
+
+        
+    </div>
+    <script src="{% static 'dashboard/assets/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'dashboard/assets/vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
+    <script src="{% static 'dashboard/assets/vendor/slimscroll/jquery.slimscroll.js' %}"></script>
+    <script src="{% static 'dashboard/assets/vendor/multi-select/js/jquery.multi-select.js' %}"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="{% static 'dashboard/assets/vendor/datatables/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+    <script src="{% static 'dashboard/assets/vendor/datatables/js/buttons.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'dashboard/assets/vendor/datatables/js/data-table.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
+    <script src="https://cdn.datatables.net/rowgroup/1.0.4/js/dataTables.rowGroup.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
+    <script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
+
+    <!-- Initialize DataTable -->
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable();
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#yourDataTableID').DataTable({
+                // Your DataTable options here
+            });
+        });
+    </script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchForm = document.getElementById('searchForm');
+            const searchInput = document.getElementById('search');
+            const tableRows = document.querySelectorAll('.person-row');
+    
+            searchForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+                filterResults();
+            });
+    
+            searchInput.addEventListener('input', function () {
+                filterResults();
+            });
+    
+            function filterResults() {
+                const query = searchInput.value.toLowerCase();
+    
+                tableRows.forEach(function (row) {
+                    const username = row.querySelector('.username').textContent.toLowerCase();
+    
+                    if (username.includes(query)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable({
+                "pageLength": 30, // Set the number of rows per page
+                "lengthMenu": [10, 20, 30, 50], // Optional: Customize the length menu
+                "dom": 'lBfrtip', // Optional: Customize the layout of the DataTable
+                "buttons": [
+                    'copy', 'csv', 'excel', 'pdf', 'print' // Optional: Enable export buttons
+                ]
+            });
+        });
+    </script>
+</body>
+
+</html>
