@@ -13,9 +13,12 @@
     <link rel="stylesheet" href="{% static 'dashboard/assets/vendor/fonts/fontawesome/css/fontawesome-all.css' %}">
     <!-- DataTables CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+<<<<<<< HEAD
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-ezTvAeOuVPf33SykRS5rjX6rW6jp0Xs6VnFz4xMShZeCg4C9oDWkZ3tD8ltfs74M" crossorigin="anonymous">
     
 
+=======
+>>>>>>> 045ebd972e7b4b8a2006b8c27f98ca03c20d65e3
 </head>
 
 <body>
@@ -157,6 +160,7 @@
     <script src="{% static 'dashboard/assets/vendor/slimscroll/jquery.slimscroll.js' %}"></script>
     <script src="{% static 'dashboard/assets/vendor/multi-select/js/jquery.multi-select.js' %}"></script>
     <!-- DataTables JS -->
+<<<<<<< HEAD
   
 	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
 	<script>
@@ -1306,6 +1310,13 @@
 	emailLink: "ibi.txyo@gmail.com"
 },
 	{userPic: "https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/523d91ecba592810ab741b215a7e6d08~c5_100x100.jpeg?lk3s=a5d48078&x-expires=1705316400&x-signature=pxEXgIcipvGP2hKMSQUW5wKnw0w%3D",
+=======
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    <script>
+        // Sample data
+        var sampleData = [  {
+	userPic: "https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/523d91ecba592810ab741b215a7e6d08~c5_100x100.jpeg?lk3s=a5d48078&x-expires=1705316400&x-signature=pxEXgIcipvGP2hKMSQUW5wKnw0w%3D",
+>>>>>>> 045ebd972e7b4b8a2006b8c27f98ca03c20d65e3
 	userID: "chrisschimii",
 	followerCount: "251600",
 	country: "DE",
@@ -2330,8 +2341,13 @@
                     data[i].userID,
                     data[i].followerCount,
                     data[i].country,
+<<<<<<< HEAD
 					generateInstagramIcon(data[i].instagramLink),
                     generateEmailIcon(data[i].emailLink)
+=======
+                    '<a href="' + data[i].instagramLink + '" target="_blank"><img src="instagram_icon.png" alt="Instagram"></a>',
+                    '<a href="' + data[i].emailLink + '" target="_blank"><img src="email_icon.png" alt="Email"></a>'
+>>>>>>> 045ebd972e7b4b8a2006b8c27f98ca03c20d65e3
                 ]).draw(false);
             }
         }
