@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Influzio.com - Privacy Policy</title>
+    <link rel="stylesheet" href="{% static 'dashboard/assets/vendor/bootstrap/css/bootstrap.min.css'  %}">
+    <link href="{% static 'dashboard/assets/vendor/fonts/circular-std/style.css'  %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'dashboard/assets/libs/css/style.css'  %}">
+    <link rel="stylesheet" href="{% static 'dashboard/assets/vendor/fonts/fontawesome/css/fontawesome-all.css'  %}">
+   
+  
+   <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+
+        header,
+        section,
+        footer {
+            margin-bottom: 30px;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+        }
+
+        ol {
+            padding-left: 20px;
+        }
+
+        footer {
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- main wrapper -->
+    <div class="dashboard-main-wrapper">
+        <!-- navbar -->
+        <div class="dashboard-header">
+            <nav class="navbar navbar-expand-lg bg-white fixed-top">
+
+                <a class="navbar-brand" href="{% url 'index' %}">Influzio</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto navbar-right-top">
+                        <li class="nav-item">
+                            <div id="custom-search" class="top-search-bar">
+                                <input class="form-control" type="text" placeholder="Search..">
+                            </div>
+                        </li>
+                        <!-- Add other navbar items here -->
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- end navbar -->
+        <!-- left sidebar -->
+        <div class="nav-left-sidebar sidebar-dark">
+            <div class="menu-list">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav flex-column">
+                            <!-- Retained 'User' section with 'Log Out' and 'Subscriptions' links -->
+                            <li class="nav-divider">
+                                Menu
+                            </li>
+                            {% if request.user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false"
+                                    data-target="#submenu-1" aria-controls="submenu-1">
+                                    <i class="fa fa-fw fa-user-circle"></i>{{request.user.username}}
+                                </a>
+                                <div id="submenu-1" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'index' %}">Home</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">Subscriptions</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false"
+                                    data-target="#submenu-1" aria-controls="submenu-1">
+                                    <i class="fa fa-fw fa-user-circle"></i>account
+                                </a>
+                                <div id="submenu-1" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'logout' %}">Signin</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'index' %}">Home</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">Subscriptions</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            {% endif %}
+                           
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- end left sidebar -->
+        <!-- wrapper  -->
+        <div class="dashboard-wrapper">
+            <div class="container-fluid dashboard-content ">
+                <div class="row">
+                    <div class="col-xl-10">
+                        <!-- pageheader  -->
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="page-header" id="top">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <!-- Add breadcrumb items if needed -->
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end pageheader  -->
+                        <!-- overview  -->
+                        <div class="page-section" id="overview">
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <h2>Privacy Policy</h2>
+                                    <p>Last updated: [Date]</p>
+                                    <!-- Information We Collect -->
+                                    <h3>Information We Collect</h3>
+                                    <ol>
+                                        <li><strong>Personal Information:</strong> When you sign up for Influzio.com, we may
+                                            collect personal information such as your name, email address, and other
+                                            relevant details.</li>
+                                        <li><strong>Influencer and Brand Information:</strong> As a platform connecting TikTok
+                                            influencers with brand marketers, we may collect information about influencers
+                                            and brands to facilitate collaborations. This may include social media
+                                            profiles, audience demographics, and marketing preferences.</li>
+                                        <li><strong>Usage Information:</strong> We collect information about how you interact
+                                            with Influzio.com, including your IP address, browser type, pages visited, and
+                                            other usage data.</li>
+                                    </ol>
+                                    <!-- How We Use Your Information -->
+                                    <h3>How We Use Your Information</h3>
+                                    <ol>
+                                        <li><strong>Connection and Communication:</strong> We use the information collected to
+                                            connect influencers with brand marketers and facilitate collaboration.</li>
+                                        <li><strong>Communication:</strong> We may use your contact information to send you
+                                            updates, newsletters, and marketing materials related to our services. You can
+                                            opt-out of these communications at any time.</li>
+                                        <li><strong>Improvement of Services:</strong> We analyze user behavior to improve our
+                                            website, services, and user experience.</li>
+                                    </ol>
+                                    <!-- Sharing of Information -->
+                                    <h3>Sharing of Information</h3>
+                                    <ol>
+                                        <li><strong>With Your Consent:</strong> We may share your information with influencers
+                                            and brand marketers only with your explicit consent.</li>
+                                        <li><strong>Service Providers:</strong> We may share information with third-party
+                                            service providers who assist us in delivering our services.</li>
+                                        <li><strong>Legal Compliance:</strong> We may disclose information if required by law
+                                            or in response to a valid legal request.</li>
+                                    </ol>
+                                    <!-- Security -->
+                                    <h3>Security</h3>
+                                    <p>We take appropriate measures to protect your information from unauthorized access,
+                                        disclosure, alteration, and destruction. However, please be aware that no method of
+                                        transmission over the internet or electronic storage is 100% secure.</p>
+                                    <!-- Third-Party Elements -->
+                                    <h3>Third-Party Elements</h3>
+                                    <p>Certain design elements on Influzio.com are taken from "Copyright © 2018 Concept. All
+                                        rights reserved. Dashboard by Colorlib." We acknowledge and respect the intellectual
+                                        property rights of Colorlib.</p>
+                                    <!-- Your Choices -->
+                                    <h3>Your Choices</h3>
+                                    <p>You have the right to access, correct, or delete your personal information. You can
+                                        manage your communication preferences by adjusting your account settings.</p>
+                                    <!-- Changes to This Privacy Policy -->
+                                    <h3>Changes to This Privacy Policy</h3>
+                                    <p>We may update our Privacy Policy from time to time. Any changes will be reflected on
+                                        this page, and the date of the last update will be revised accordingly. We encourage
+                                        you to review this Privacy Policy periodically.</p>
+                                    <!-- Contact Us -->
+                                    <h3>Contact Us</h3>
+                                    <p>If you have any questions or concerns about our Privacy Policy, please contact us at
+                                        [your contact information].</p>
+                                    <!-- Agreement -->
+                                    <p>By using Influzio.com, you agree to the terms outlined in this Privacy Policy.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <!-- Add other content as needed -->  
+           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- footer -->
+            <div class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                            Influzio @2024
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                            <div class="text-md-right footer-links d-none d-sm-block">
+                                <a href="javascript: void(0);">About</a>
+                                <a href="javascript: void(0);">Support</a>
+                                <a href="javascript: void(0);">Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end footer -->
+        </div>
+    </div>
+    <!-- end main wrapper -->
+    <!-- Optional JavaScript -->
+    <script src="{% static 'dashboard/assets/vendor/jquery/jquery-3.3.1.min.js'  %}"></script>
+    <script src="{% static 'dashboard/assets/vendor/bootstrap/js/bootstrap.bundle.js'  %}"></script>
+    <script src="{% static 'dashboard/assets/vendor/slimscroll/jquery.slimscroll.js'  %}"></script>
+    <script src="{% static 'dashboard/assets/libs/js/main-js.js'  %}"></script>
+</body>
+
+</html>
